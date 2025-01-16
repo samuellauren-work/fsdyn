@@ -25,12 +25,7 @@ static list_t *build_category_ranges(char **categories, char **names)
     range_t *range = NULL;
     for (int cp = 0; cp < N_CP; cp++)
         if (categories[cp]) {
-            if (charstr_ends_with(names[cp], ", Last>")) {
-                assert(range &&
-                       charstr_ends_with(names[range->first], ", First>") &&
-                       !strcmp(range->category, categories[cp]));
-                range->last = cp;
-            } else if (range && !strcmp(range->category, categories[cp]) &&
+            if (range && !strcmp(range->category, categories[cp]) &&
                        cp == range->last + 1) {
                 range->last = cp;
             } else {
